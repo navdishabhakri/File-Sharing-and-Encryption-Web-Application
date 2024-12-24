@@ -1,0 +1,33 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Character encoding for proper text rendering -->
+    <meta charset="UTF-8">
+    
+    <!-- Viewport settings for responsive design on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Title of the page -->
+    <title>Delete Confirmation</title>
+</head>
+<body>
+    <!-- Header for the page -->
+    <h1>Delete File</h1>
+    
+    <!-- Message asking for confirmation to delete a specific file -->
+    <p>Are you sure you want to delete the file: <strong>{{ file.file.name }}</strong>?</p>
+    
+    <!-- Form for submitting the delete request -->
+    <form method="POST">
+        {% csrf_token %}
+        <!-- Button to submit the form and confirm the deletion -->
+        <button type="submit">Yes, delete</button>
+        
+        <!-- Link to cancel the deletion and go back to the uploaded files page -->
+        <a href="{% url 'my_uploaded_files' %}">Cancel</a>
+    </form>
+</body>
+</html>

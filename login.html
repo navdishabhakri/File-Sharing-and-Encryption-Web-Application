@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Character encoding for proper text rendering -->
+    <meta charset="UTF-8">
+    
+    <!-- Viewport settings for responsive design on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Title of the page -->
+    <title>Login</title>
+    
+    <!-- Inline CSS styles for the page -->
+    <style>
+        /* Basic styling for the body */
+        body {
+            font-family: Arial, sans-serif; /* Sets font */
+            background-color: white; /* White background */
+            color: black; /* Black text color */
+            text-align: center; /* Centers text */
+            padding: 20px; /* Adds padding around the body content */
+        }
+        
+        /* Styling for the header */
+        h1 {
+            color: blue; /* Blue color for the header */
+        }
+        
+        /* Styling for the form */
+        form {
+            display: inline-block; /* Centers the form */
+            padding: 20px; /* Adds padding inside the form */
+            border: 1px solid blue; /* Blue border around the form */
+            background-color: #f2f2f2; /* Light gray background for the form */
+        }
+        
+        /* Button styling */
+        button {
+            background-color: blue; /* Blue background for the button */
+            color: white; /* White text color for the button */
+            border: none; /* Removes border */
+            padding: 10px 20px; /* Adds padding inside the button */
+            cursor: pointer; /* Changes cursor to pointer on hover */
+        }
+        
+        /* Hover effect for the button */
+        button:hover {
+            background-color: darkblue; /* Darker blue on hover */
+        }
+        
+        /* Styling for the paragraph below the form */
+        p {
+            margin-top: 20px; /* Adds space above the paragraph */
+        }
+        
+        /* Styling for links */
+        a {
+            color: blue; /* Blue color for the links */
+            text-decoration: none; /* Removes underline from links */
+        }
+        
+        /* Hover effect for links */
+        a:hover {
+            text-decoration: underline; /* Underlines the link on hover */
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with the title of the page -->
+    <h1>Login</h1>
+    
+    <!-- Form for user login -->
+    <form method="post">
+        <!-- CSRF token for security -->
+        {% csrf_token %}
+        
+        <!-- Render the form fields as paragraphs -->
+        {{ form.as_p }}
+        
+        <!-- Check for and display any form errors -->
+        {% if form.errors %}
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <!-- Display each error for each field -->
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+        
+        <!-- Submit button for the form -->
+        <button type="submit">Login</button>
+    </form>
+    
+    <!-- Link to the registration page if the user doesn't have an account -->
+    <p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
+</body>
+</html>

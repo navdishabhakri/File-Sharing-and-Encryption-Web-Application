@@ -1,0 +1,38 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Character encoding for proper text rendering -->
+    <meta charset="UTF-8">
+    
+    <!-- Viewport settings for responsive design on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Title block, allows for dynamic page title based on template block -->
+    <title>{% block title %}Secure File Sharing{% endblock %}</title>
+</head>
+<body>
+    <!-- Navigation bar with authentication-based links -->
+    <nav>
+        <ul>
+            {% if user.is_authenticated %}
+                <!-- Links visible when the user is authenticated -->
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <!-- Links visible when the user is not authenticated -->
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    
+    <!-- Main content block where page-specific content is rendered -->
+    <div>
+        {% block content %}
+        <!-- Content specific to each page will go here -->
+        {% endblock %}
+    </div>
+</body>
+</html>
